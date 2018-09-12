@@ -1,9 +1,4 @@
 {
-	"test": {
-		"PORT": 3000,
-		"MONGODB_URI": "mongodb://localhost/yelp_camp_test"
-	},
-
 	"development": {
 		"PORT": 3000,
 		"MONGODB_URI": "mongodb://localhost/yelp_camp"
