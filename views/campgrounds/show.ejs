@@ -4,29 +4,41 @@
 	<div class="row">
 		<!-- add to the backend this code using promises -->
 		<div class="col-md-3 img-responsive figure-img" id="mapContainer">
-		<script>
-			if(typeof <%= campground.longitude %> == 'number' && typeof <%= campground.latitude %> == 'number') {
-				var platform = new H.service.Platform({
-			    'app_id': 'qYWONMF17R4YMu20zgmz',
-			    'app_code': 'h68w8xnh0MBHJD8IzQbWQQ'
-			    });
+			<div id="map" style="width: 100%; height: 400px; background: grey" />
+		  		<script  type="text/javascript" charset="UTF-8" >
+		  			function moveMapToDestination(map){
+		 				map.setCenter({lng: <%= campground.longitude %>, lat: <%= campground.latitude %> });
+		  				map.setZoom(10);
+					}
 
-			    // Obtain the default map types from the platform object
-			    var maptypes = platform.createDefaultLayers();
+					var platform = new H.service.Platform({
+					  app_id: 'qYWONMF17R4YMu20zgmz',
+					  app_code: 'h68w8xnh0MBHJD8IzQbWQQ',
+					  useHTTPS: true
+					});
+					var pixelRatio = window.devicePixelRatio || 1;
+					var defaultLayers = platform.createDefaultLayers({
+					  tileSize: pixelRatio === 1 ? 256 : 512,
+					  ppi: pixelRatio === 1 ? undefined : 320
+					});
 
-			    // Instantiate (and display) a map object:
-			    var map = new H.Map(
-			    document.getElementById('mapContainer'),
-			    maptypes.normal.map,
-			    {
-			      zoom: 10,
-			      center: { lng: <%= campground.longitude %>, lat: <%= campground.latitude %> }
-			    });
-			} else {
-			  	console.log('The author didn\'t added coordinates');
-			}
-		</script>
-		</div>	
+					//Step 2: initialize a map  - not specificing a location will give a whole world view.
+					var map = new H.Map(document.getElementById('map'),
+					  defaultLayers.normal.map, {pixelRatio: pixelRatio});
+
+					//Step 3: make the map interactive
+					// MapEvents enables the event system
+					// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+					var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+					// Create the default UI components
+					var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+					// Now use the map as required...
+					moveMapToDestination(map);
+		  		</script>
+		  	</div>
+		</div>
 		<div class="col-md-9">
 			<div class="img-thumbnail">
 				<div class="text-center">
