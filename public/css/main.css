@@ -15,7 +15,6 @@ li {
 }
 
 #form-edit {
-	padding-top: 50px;
 	text-align:center;
 	margin: 35px;
 }
@@ -31,6 +30,7 @@ div #form-body{
 
 #container-margin {
 	margin-top: 15px;
+	height: 50px;
 }
 
 #mapContainer {
@@ -39,7 +39,11 @@ div #form-body{
 }
 
 .space-footer {
-	height: 237px;
+	height: 145px;
+}
+
+.comment-footer {
+	height: 197px;
 }
 
 footer {

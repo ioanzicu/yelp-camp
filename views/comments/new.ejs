@@ -6,6 +6,7 @@
 		<div id="form-body">
 			<form action="/campgrounds/<%= campground._id %>/comments" method="POST" id="form-validation" novalidate>
 				<div class="form-group">
+					<span class="label font-weight-bold">Text</span>
 					<input class="form-control" type="text" name="comment[text]" placeholder="text" required/>
 				</div>
 				<input class="form-control" type="hidden" name="comment[creatingAt]"/>
@@ -17,7 +18,7 @@
 			<a href="/campgrounds">Go Back!</a>
 		</div>
 	</div>
-	<div class="space-footer"></div>
+	<div class="comment-footer"></div>
 </div>
 
 <% include ../partials/footer %>
