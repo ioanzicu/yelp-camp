@@ -1,0 +1,47 @@
+li {
+	list-style: none;
+}
+
+.img-thumbnail img {
+	width: 100%;
+	padding-bottom: 9px;
+}
+
+.img-thumbnail {
+	padding: 0;
+};
+
+#form-container {
+}
+
+#form-edit {
+	padding-top: 50px;
+	text-align:center;
+	margin: 35px;
+}
+
+div #form-body{
+	width: 50%; 
+	margin: 0 auto;
+}
+
+#delete-form {
+	display: inline;
+}
+
+#container-margin {
+	margin-top: 15px;
+}
+
+#mapContainer {
+	width: 100%;
+	height: 400px;
+}
+
+.space-footer {
+	height: 237px;
+}
+
+footer {
+	margin-top: 1%;
+}

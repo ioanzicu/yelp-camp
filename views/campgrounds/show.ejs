@@ -1,0 +1,85 @@
+<% include ../partials/header %>
+
+<div class="container">
+	<div class="row">
+		<!-- add to the backend this code using promises -->
+		<div class="col-md-3 img-responsive figure-img" id="mapContainer">
+		<script>
+			if(typeof <%= campground.longitude %> == 'number' && typeof <%= campground.latitude %> == 'number') {
+				var platform = new H.service.Platform({
+			    'app_id': 'qYWONMF17R4YMu20zgmz',
+			    'app_code': 'h68w8xnh0MBHJD8IzQbWQQ'
+			    });
+
+			    // Obtain the default map types from the platform object
+			    var maptypes = platform.createDefaultLayers();
+
+			    // Instantiate (and display) a map object:
+			    var map = new H.Map(
+			    document.getElementById('mapContainer'),
+			    maptypes.normal.map,
+			    {
+			      zoom: 10,
+			      center: { lng: <%= campground.longitude %>, lat: <%= campground.latitude %> }
+			    });
+			} else {
+			  	console.log('The author didn\'t added coordinates');
+			}
+		</script>
+		</div>	
+		<div class="col-md-9">
+			<div class="img-thumbnail">
+				<div class="text-center">
+					<img class="img-fluid img-responsive figure-img" src="<%= campground.image %>">
+				</div>
+				<div class="caption-full m-3">
+					<h4 class="text-center"><a href="#"><%= campground.name %></a></h4>
+					<br />
+					<p><b>Address:</b> <%= campground.address %></p>
+					<p><b>Phone Number:</b> <%= campground.phone  %></p>
+					<h4 class="text-right">$<%= campground.price %>/night</h4>
+					<p><%= campground.description  %></p>
+					<br />
+					<p>
+						<em>Submited By <b><%= campground.author.username %></em></b> at: <%= time %>
+					</p>
+					<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
+						<a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+						<form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+							<button class="btn btn-danger">Delete</button>
+						</form>
+					<% } %>
+				</div>
+			</div>
+			<div class="card card-body mt-4 bg-light">
+				<div class="text-right">
+					<a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+				</div>
+				<hr />
+				<% campground.comments.forEach(function(comment){ %>
+					<div class="row">
+						<div class="col-md-12">
+							<strong><%= comment.author.username %></strong>
+							<span class="float-right">+++</span>
+							<p>
+								<%= comment.text %></p>
+							</p>
+						<% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+							<a class="btn btn-xs btn-warning" 	
+								href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">
+								Edit
+							</a>
+							<form id="delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+								<input type="submit" class="btn btn-xs btn-danger" value="Delete" />
+							</form>
+						<% } %>
+						<hr />
+						</div>
+					</div>
+				<% }); %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>

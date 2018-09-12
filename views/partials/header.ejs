@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Yelp Camp</title>
+		<link rel="stylesheet" href="/bootstrap.css">
+		<link rel="stylesheet" href="/main.css">
+		<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  		<script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+  type="text/javascript" charset="utf-8"></script>
+  		<script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+  type="text/javascript" charset="utf-8"></script>
+	<head>
+	<body>
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" href="/">YelpCamp</a>
+			<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<% if(!currentUser){ %>
+						<li class="pr-4"><a class="nav-item nav-link" href="/login">Login</a></li>
+						<li class="pr-4"><a class="nav-item nav-link" href="/register">Sign Up</a></li>
+					<% } else { %>
+						<li class="pr-4"><a class="nav-item nav-link" href="#">Signed In As <%= currentUser.username %></a></li>
+						<li class="pr-4"><a class="nav-item nav-link" href="/logout">Logout</a></li>
+					<% } %>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container" id="container-margin">
+		<% if(error && error.length > 0){ %>
+			<div class="alert alert-danger role="alert">
+				<%= error %>
+			</div>
+		<% } %>
+		<% if(success && success.length > 0){ %>
+			<div class="alert alert-success role="alert">
+				<%= success %>
+			</div>
+		<% } %>
+	</div>

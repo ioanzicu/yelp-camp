@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+
+<div class="container" style="padding-top:25px;">
+	<h1 style="text-align:center;">Create a New Campground</h1>
+	<div class="row">
+		<div style="width: 50%; margin: 0 auto;">
+			<form action="/campgrounds" method="POST" id="form-validation" novalidate>
+				<div class="form-group">
+					<input class="form-control" type="text" name="name" placeholder="name" required/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="number" name="price" placeholder="price" min="0.01" step="0.01" required/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="image" placeholder="image url" required/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="address" placeholder="address" required/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="number" name="latitude" placeholder="latitude" min="0.00001" step="0.00001" required/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="number" name="longitude" placeholder="longitude" min="0.00001" step="0.00001" required/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="tel" name="phone" placeholder="phone number" required/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="description" placeholder="description" required/>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-lg btn-primary btn-block">Submit!</button>
+				</div>
+			</form>
+			<script src="/form-validation.js"></script>
+			<a href="/campgrounds">Go Back!</a>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>
